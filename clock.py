@@ -7,7 +7,7 @@ class Node:
 class CircularDoublyLinkedList:
     def __init__(self, max_value):
         self.head = None
-        # Create nodes from 0 to max_value-1
+    
         for i in range(max_value):
             self.insert(i)
     
@@ -38,59 +38,57 @@ class CircularDoublyLinkedList:
 
 class Clock:
     def __init__(self):
-        # Create circular lists for hours (0-23), minutes (0-59), and seconds (0-59)
+  
         self.hours = CircularDoublyLinkedList(24)
         self.minutes = CircularDoublyLinkedList(60)
         self.seconds = CircularDoublyLinkedList(60)
         
-        # Initialize time to 00:00:00
+    
         self.current_hour = 0
         self.current_minute = 0
         self.current_second = 0
 
     def tick(self):
-        # Advance one second
+        
         self.current_second = self.seconds.get_next(self.current_second)
         
-        # If we complete a minute
+        
         if self.current_second == 0:
             self.current_minute = self.minutes.get_next(self.current_minute)
             
-            # If we complete an hour
+          
             if self.current_minute == 0:
                 self.current_hour = self.hours.get_next(self.current_hour)
 
     def get_time(self):
         return f"{self.current_hour:02d}:{self.current_minute:02d}:{self.current_second:02d}"
 
-# Example usage
 if __name__ == "__main__":
     clock = Clock()
     
-    # Print initial time
+  
     print("Initial time:", clock.get_time())
     
-    # Simulate some time passing
-    for _ in range(3661):  # Advance 1 hour, 1 minute, and 1 second
+    for _ in range(3661):  
         clock.tick()
     
     print("After 3661 seconds:", clock.get_time())
     
-    # Demonstrate time zones (simplified example)
+   
     def get_time_for_timezone(base_hour, offset):
         adjusted_hour = (base_hour + offset) % 24
         return adjusted_hour
     
-    # Example time zone offsets (relative to Colombia)
+
     time_zones = {
         "Colombia": 0,
-        "New York": -0,  # During certain times of the year
-        "London": +5,    # During certain times of the year
-        "Paris": +6,     # During certain times of the year
-        "Tokyo": +13,    # During certain times of the year
+        "New York": -0,  
+        "London": +5,   
+        "Paris": +6,     
+        "Tokyo": +13,   
     }
     
-    # Print time for each timezone
+   
     print("\nCurrent time in different time zones:")
     for zone, offset in time_zones.items():
         zone_hour = get_time_for_timezone(clock.current_hour, offset)
