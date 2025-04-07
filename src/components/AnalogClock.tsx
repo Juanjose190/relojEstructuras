@@ -15,14 +15,14 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({ time }) => {
 
   const clockSize = 340;
   const center = clockSize / 2;
-  const numberRadius = 135; // Ajustado para que encaje justo dentro del borde
+  const numberRadius = 135; 
 
   return (
     <div
       className="relative rounded-full border-[8px] border-black bg-white shadow-lg"
       style={{ width: clockSize, height: clockSize }}
     >
-      {/* Números */}
+     
       {[...Array(12)].map((_, i) => {
         const number = i === 0 ? 12 : i;
         const angle = (i * 30 - 90) * (Math.PI / 180);
@@ -46,7 +46,7 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({ time }) => {
         );
       })}
 
-      {/* Aguja hora */}
+
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[6px] bg-black rounded-full"
         style={{
@@ -56,7 +56,6 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({ time }) => {
         }}
       />
 
-      {/* Aguja minuto */}
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[4px] bg-black rounded-full"
         style={{
@@ -66,7 +65,7 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({ time }) => {
         }}
       />
 
-      {/* Aguja segundo */}
+ 
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 w-[2px] bg-red-500 rounded-full"
         style={{
@@ -76,7 +75,7 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({ time }) => {
         }}
       />
 
-      {/* Centro */}
+   
       <div className="absolute left-1/2 top-1/2 w-3 h-3 bg-black rounded-full -translate-x-1/2 -translate-y-1/2" />
     </div>
   );
